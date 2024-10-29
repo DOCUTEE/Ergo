@@ -1,4 +1,4 @@
-package cnpm.ergo;
+package cnpm.ergo.controller;
 
 import java.io.*;
 
