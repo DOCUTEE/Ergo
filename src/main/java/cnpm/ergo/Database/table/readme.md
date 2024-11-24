@@ -1,1 +1,0 @@
-Set of create table statements for the database.
