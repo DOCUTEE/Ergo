@@ -53,6 +53,12 @@ public class User implements Serializable {
     @Column(name = "isDelete", columnDefinition = "BIT")
     private Boolean isDelete;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Question> questions;
+
+    @ManyToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Conversation> conversations;
+
     public static void main(String[] args) {
         RoleDAO roleDAO = new RoleDAOImpl();
         Role role = roleDAO.getRoleById(2);

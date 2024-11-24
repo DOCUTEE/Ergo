@@ -96,4 +96,13 @@ public class BlogDaoImpl implements IBlogDao {
         Query query = em.createQuery(jpql);
         return ((Long) query.getSingleResult()).intValue(); // Đếm tổng số blog
     }
+    public static void main(String[] args) {
+        BlogDaoImpl blogDaoImpl = new BlogDaoImpl();
+        Blog blog = new Blog();
+        blog.setBlogTitle("Test");
+        blog.setContent("Test");
+        blog.setApproval(true);
+        blog.setPostingDate(java.time.LocalDate.now());
+        blogDaoImpl.insert(blog);
+    }
 }

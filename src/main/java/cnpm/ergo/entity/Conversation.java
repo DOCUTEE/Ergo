@@ -1,18 +1,10 @@
 package cnpm.ergo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,10 +17,10 @@ public class Conversation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "conversationId")
     private int conversationId;
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employeeId", referencedColumnName = "employeeId")
-	private int employeeId;
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customerId", referencedColumnName = "customerId")
-	private int Id;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId")
+	private List<User> users;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "conversation")
+    private List<Message> messages;
 }

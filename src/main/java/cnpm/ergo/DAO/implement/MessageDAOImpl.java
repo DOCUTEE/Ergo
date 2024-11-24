@@ -1,10 +1,14 @@
 package cnpm.ergo.DAO.implement;
 
+import java.sql.Date;
 import java.util.List;
 
 import cnpm.ergo.DAO.interfaces.IMessage;
+import cnpm.ergo.DAO.interfaces.UserDAO;
 import cnpm.ergo.configs.JPAConfig;
+import cnpm.ergo.entity.Conversation;
 import cnpm.ergo.entity.Message;
+import cnpm.ergo.entity.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
@@ -80,8 +84,25 @@ public class MessageDAOImpl implements IMessage{
     @Override
     public int count() {
         EntityManager em = JPAConfig.getEntityManager();
-        String jpql = "SELECT COUNT(m) FROM Message c";
+        String jpql = "SELECT COUNT(m) FROM Message m";
         Query query = em.createQuery(jpql);
         return ((Long) query.getSingleResult()).intValue();
+    }
+
+    public static void main(String[] args) {
+        //insert message
+        UserDAO userDAO = new UserDAOImpl();
+        User user = userDAO.getUserById(1);
+
+        Conversation conversation = new Conversation();
+
+
+        Message message = new Message();
+        message.setContent("Hello");
+        message.setSender(user);
+        message.setTimestamp(Date.valueOf("2021-10-10"));
+        MessageDAOImpl messageDAOImpl = new MessageDAOImpl();
+        messageDAOImpl.insert(message);
+
     }
 }

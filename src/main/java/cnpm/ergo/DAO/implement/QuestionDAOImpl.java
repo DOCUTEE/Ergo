@@ -80,8 +80,18 @@ public class QuestionDAOImpl implements IQuestion{
     @Override
     public int count() {
         EntityManager em = JPAConfig.getEntityManager();
-        String jpql = "SELECT COUNT(q) FROM Question c";
+        String jpql = "SELECT COUNT(q) FROM Question q";
         Query query = em.createQuery(jpql);
         return ((Long) query.getSingleResult()).intValue();
+    }
+
+    public static void main(String[] args) {
+        IQuestion questionDAO = new QuestionDAOImpl();
+        Question question = new Question();
+        question.setContent("What is the best way to learn Java?");
+        question.setPending(true);
+        question.setTimestamp(new java.util.Date());
+        questionDAO.insert(question);
+        System.out.println("Insert success!");
     }
 }
