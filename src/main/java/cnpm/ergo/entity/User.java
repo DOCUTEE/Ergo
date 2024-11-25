@@ -51,7 +51,7 @@ public abstract class User implements Serializable {
     @Column(name = "isDelete", columnDefinition = "BIT")
     private Boolean isDelete;
 
-    public static void main(String[] args) {
+	public static void main(String[] args) {
 
     }
 }

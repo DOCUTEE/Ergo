@@ -16,7 +16,7 @@ import java.util.List;
 @NamedQuery(name = "product.findAll", query = "SELECT p FROM Product p")
 public class Product {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "productId")
     private int productId;
