@@ -23,8 +23,14 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
-
-        <dependency>
+	
+    <!-- Lombok Dependency -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.30</version> <!-- Sử dụng phiên bản mới nhất -->
+        <scope>provided</scope>
+    </dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <version>6.1.0</version>
@@ -93,6 +99,11 @@
         </dependency>
 
 
+        <dependency>
+        	<groupId>Sring</groupId>
+        	<artifactId>AloTra</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
