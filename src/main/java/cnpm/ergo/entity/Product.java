@@ -7,7 +7,7 @@ import java.util.List;
 @Table(name = "product")
 public class Product {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "productId")
     private int productId;

@@ -53,6 +53,7 @@ public class User implements Serializable {
     @Column(name = "isDelete", columnDefinition = "BIT")
     private Boolean isDelete;
 
+<<<<<<< HEAD
     public static void main(String[] args) {
         RoleDAO roleDAO = new RoleDAOImpl();
         Role role = roleDAO.getRoleById(2);
@@ -67,6 +68,9 @@ public class User implements Serializable {
         user.setRole(role);
         user.setStatus("Active");
         user.setIsDelete(false);
+=======
+	public static void main(String[] args) {
+>>>>>>> 2b1e3ae (lưu tạm)
 
     }
 }
