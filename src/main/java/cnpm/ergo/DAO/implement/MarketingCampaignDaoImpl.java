@@ -4,6 +4,7 @@ import java.util.List;
 
 import cnpm.ergo.DAO.interfaces.IMarketingCampaignDao;
 import cnpm.ergo.configs.JPAConfig;
+import cnpm.ergo.entity.CampaignImageEntity;
 import cnpm.ergo.entity.MarketingCampaignEntity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -11,22 +12,6 @@ import jakarta.persistence.EntityTransaction;
 public class MarketingCampaignDaoImpl implements IMarketingCampaignDao {
 
 	private EntityManager entityManager = JPAConfig.getEntityManager();
-	
-	@Override
-	public void insert(MarketingCampaignEntity campaignEntity) {
-		EntityTransaction transaction = entityManager.getTransaction();
-        try {
-            transaction.begin();
-            entityManager.persist(campaignEntity); 
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw new RuntimeException("Không thêm được MarketingCampaignEntity này: " + e.getMessage(), e);
-        }
-	}
-
 	@Override
 	public void update(MarketingCampaignEntity campaignEntity) {
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -66,11 +51,33 @@ public class MarketingCampaignDaoImpl implements IMarketingCampaignDao {
 	@Override
 	public List<MarketingCampaignEntity> findAll() {
 		try {
-	        return entityManager.createQuery("SELECT * FROM marketingcampaign m", MarketingCampaignEntity.class)
+	        return entityManager.createQuery("SELECT m FROM MarketingCampaignEntity m", MarketingCampaignEntity.class)
 	                            .getResultList();
 	    } catch (Exception e) {
 	        throw new RuntimeException("Lỗi truy vấn: " + e.getMessage(), e);
 	    }
 	}
+	@Override
+	public MarketingCampaignEntity findById(Long id) {
+	    return entityManager.find(MarketingCampaignEntity.class, id);
+	}
 
+	@Override
+	public void insert(MarketingCampaignEntity campaignEntity, List<CampaignImageEntity> images) {
+		EntityTransaction transaction = entityManager.getTransaction();
+        try {
+        	for (CampaignImageEntity image : images) {
+                image.setMarketingCampaign(campaignEntity);  
+            }
+        	campaignEntity.setCampaignImages(images);
+            transaction.begin();
+            entityManager.persist(campaignEntity); 
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            throw new RuntimeException("Không thêm được MarketingCampaignEntity này: " + e.getMessage(), e);
+        }
+	}
 }

@@ -28,14 +28,16 @@ public class CampaignImageDaoImpl implements ICampaignImageDao{
 
 	@Override
 	public List<CampaignImageEntity> findImagesByCampaignId(Long campaignId) {
-		try {
-            return entityManager.createQuery("SELECT * FROM campaignimage ci WHERE ci.campaignId = :campaignId", CampaignImageEntity.class)
-                                .setParameter("campaignId", campaignId)
-                                .getResultList();
-        } catch (Exception e) {
-            throw new RuntimeException("Lỗi khi truy vấn CampaignImage: " + e.getMessage(), e);
-        }
+	    try {
+	        // Sử dụng JPQL thay vì SQL
+	        return entityManager.createQuery("SELECT ci FROM CampaignImageEntity ci WHERE ci.marketingCampaign.campaignId = :campaignId", CampaignImageEntity.class)
+	                            .setParameter("campaignId", campaignId)
+	                            .getResultList();
+	    } catch (Exception e) {
+	        throw new RuntimeException("Lỗi khi truy vấn CampaignImage: " + e.getMessage(), e);
+	    }
 	}
+
 
 	@Override
 	public void deleteByCampaignId(Long campaignId) {

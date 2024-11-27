@@ -9,7 +9,7 @@
             <property name="jakarta.persistence.jdbc.url"    value="jdbc:mysql://localhost:3307/cnpm" />
             <property name="jakarta.persistence.jdbc.user"   value="root" />
             <property name="jakarta.persistence.jdbc.password" value="123" />
-            <property name="jakarta.persistence.schema-generation.database.action" value="create" />
+            <property name="jakarta.persistence.schema-generation.database.action" value="none" />
             <property name="hibernate.dialect"    value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.show_sql"   value="true" />
             <property name="hibernate.format_sql" value="true" />
