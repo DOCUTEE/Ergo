@@ -6,34 +6,38 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    public static Connection getConnection()
-            throws ClassNotFoundException, SQLException {
-        // Chú ý: Thay đổi các thông số kết nối cho phù hợp.
+    public static Connection getConnection() throws ClassNotFoundException, SQLException {
+        // Thông tin kết nối
         String hostName = "localhost";
         String dbName = "cnpm";
         String userName = "root";
-        String password = "root";
+        String password = "123456";
         return getMySQLConnection(hostName, dbName, userName, password);
     }
 
     public static Connection getMySQLConnection(String hostName, String dbName,
-                                                String userName, String password) throws SQLException,
-            ClassNotFoundException {
+                                                 String userName, String password)
+            throws SQLException, ClassNotFoundException {
 
-        Class.forName("com.mysql.jdbc.Driver");
+        // Sử dụng driver mới
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
-        // Cấu trúc URL Connection đối với MySQL:
-        // Ví dụ:
-        // jdbc:mysql://localhost:3306/cnpm
-        String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName;
+        // Định dạng URL kết nối MySQL
+        String connectionURL = "jdbc:mysql://" + hostName + ":3306/" + dbName
+                + "?useSSL=false&serverTimezone=UTC";
 
-        Connection conn = DriverManager.getConnection(connectionURL, userName,
-                password);
-        return conn;
+        // Tạo kết nối
+        return DriverManager.getConnection(connectionURL, userName, password);
     }
+
     public static void main(String[] args) {
         try {
-            System.out.println(new DBConnection().getConnection());
+            Connection connection = getConnection();
+            if (connection != null) {
+                System.out.println("Kết nối thành công: " + connection);
+            } else {
+                System.out.println("Kết nối thất bại!");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

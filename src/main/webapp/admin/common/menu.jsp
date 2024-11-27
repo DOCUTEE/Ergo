@@ -67,7 +67,80 @@
     <div class="menu-inner-shadow"></div>
 
     <ul class="menu-inner py-1">
-        <!-- Dashboard -->
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Employees</span>
+        </li>
+        <li class="menu-item active">
+            <a href="employee.jsp" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-user"></i>
+                <div data-i18n="Analytics">Employees</div>
+            </a>
+        </li>
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Customers</span>
+        </li>
+        <li class="menu-item active">
+            <a href="customer.jsp" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-group"></i>
+                <div data-i18n="Analytics">Customers</div>
+            </a>
+        </li>
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Marketing Campaigns</span>
+        </li>
+        <li class="menu-item active">
+            <a href="marketing.jsp" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-megaphone"></i>
+                <div data-i18n="Analytics">Marketing Campaigns</div>
+            </a>
+        </li>
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Payment Account</span>
+        </li>
+        <li class="menu-item active">
+            <a href="paymentaccount.jsp" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-wallet"></i>
+                <div data-i18n="Analytics">Payment Account</div>
+            </a>
+        </li>
+
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Orders</span>
+        </li>
+        <li class="menu-item active">
+            <a href="order.jsp" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-cart"></i>
+                <div data-i18n="Analytics">Orders</div>
+            </a>
+        </li>
+
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Products</span>
+        </li>
+        <li class="menu-item active">
+            <a href="product.jsp" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-box"></i>
+                <div data-i18n="Analytics">Products</div>
+            </a>
+        </li>
+
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Statistics</span>
+        </li>
+        <li class="menu-item active">
+            <a href="statistic.jsp" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-line-chart"></i>
+                <div data-i18n="Analytics">Statistics</div>
+            </a>
+        </li>
+
+        <%--
         <li class="menu-item active">
             <a href="index.html" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
@@ -111,9 +184,7 @@
             </ul>
         </li>
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Pages</span>
-        </li>
+
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
@@ -386,6 +457,6 @@
                 <i class="menu-icon tf-icons bx bx-file"></i>
                 <div data-i18n="Documentation">Documentation</div>
             </a>
-        </li>
+        </li>--%>
     </ul>
 </aside>
