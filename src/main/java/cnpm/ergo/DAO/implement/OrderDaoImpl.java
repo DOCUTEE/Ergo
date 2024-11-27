@@ -90,6 +90,11 @@ public class OrderDaoImpl implements IOrderDao{
         return ((Long) query.getSingleResult()).intValue();
 	}
 
+	public static void main(String[] args) {
+		IOrderDao o = new OrderDaoImpl();
+		Order user = o.findById(1);
+		System.out.print(user);
+	}
 	
 	
 }
