@@ -2,6 +2,7 @@ package cnpm.ergo.DAO.implement;
 
 import cnpm.ergo.DAO.interfaces.ICustomerDAO;
 import cnpm.ergo.configs.JPAConfig;
+import cnpm.ergo.entity.Administrator;
 import cnpm.ergo.entity.Customer;
 import jakarta.persistence.EntityManager;
 
@@ -174,6 +175,16 @@ public class CustomerDAOImpl implements ICustomerDAO {
             throw e;
         } finally {
             entityManager.close();
+        }
+    }
+    public static void main(String[] args) {
+        CustomerDAOImpl customerDAO = new CustomerDAOImpl();
+        Customer customer = customerDAO.getCustomerByEmail("phucka004@gmail.com");
+        if (customer != null) {
+            System.out.println(customer.getEmail());
+            System.out.println(customer.getPassword());
+        } else {
+            System.out.println("Customer not found.");
         }
     }
 }
