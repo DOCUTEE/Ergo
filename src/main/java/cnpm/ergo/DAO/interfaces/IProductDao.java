@@ -11,5 +11,9 @@ public interface IProductDao {
 	List<Product> findAll();
 	List<Product> searchByName(String name);
 	int count();
+
+	List<Product> findProductsByPage(int offset, int limit);
+	List<Product> findProductsAvailableByPage(int offset, int limit);
+	int countAvailable();
 }
 

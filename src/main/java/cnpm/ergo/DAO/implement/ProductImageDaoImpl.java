@@ -37,7 +37,7 @@ public class ProductImageDaoImpl implements IProductImage {
 
         try {
             trans.begin();
-            ProductImage foundImage = em.find(ProductImage.class, productImage);
+            ProductImage foundImage = em.find(ProductImage.class, productImage.getProductImageId());
             if (foundImage != null) {
                 em.remove(foundImage); // Xóa hình ảnh sản phẩm
             }

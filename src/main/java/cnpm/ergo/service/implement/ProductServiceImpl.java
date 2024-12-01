@@ -50,5 +50,20 @@ public class ProductServiceImpl implements IProductService {
     public int getProductCount() {
         return productDao.count();
     }
+
+    @Override
+    public int getProductAvailableCount() {
+        return  productDao.countAvailable();
+    }
+
+    @Override
+    public List<Product> getProductsByPage(int offset, int limit) {
+        return productDao.findProductsByPage(offset, limit);
+    }
+
+    @Override
+    public List<Product> getProductsAvailableByPage(int offset, int limit) {
+        return productDao.findProductsAvailableByPage(offset, limit);
+    }
 }
 

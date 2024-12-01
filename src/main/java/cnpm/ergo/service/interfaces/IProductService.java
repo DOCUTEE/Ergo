@@ -10,5 +10,8 @@ public interface IProductService {
 	List<Product> getAllProducts();
 	List<Product> searchProductsByName(String name);
 	int getProductCount();
+	int getProductAvailableCount();
 
+	List<Product> getProductsByPage(int offset, int limit);
+	List<Product> getProductsAvailableByPage(int offset, int limit);
 }

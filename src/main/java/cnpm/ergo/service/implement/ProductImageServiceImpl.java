@@ -9,7 +9,7 @@ import cnpm.ergo.DAO.interfaces.*;
 import cnpm.ergo.entity.ProductImage;
 public class ProductImageServiceImpl implements IProductImageService {
 
-    private final IProductImage productImageDao = new ProductImageDaoImpl();
+    private static final IProductImage productImageDao = new ProductImageDaoImpl();
 
     @Override
     public void addProductImage(ProductImage productImage) {

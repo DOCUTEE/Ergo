@@ -26,4 +26,13 @@ public class ProductImage implements Serializable {
     @JoinColumn(name = "productId", nullable = false)
     private Product product;
 
+    @Override
+    public String toString() {
+        return "ProductImage{" +
+                "id=" + productImageId +
+                ", productId=" + product.getProductId() +  // Only include the product ID to avoid cyclic reference
+                '}';
+    }
+
+
 }
