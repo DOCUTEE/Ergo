@@ -1,14 +1,14 @@
 @charset "UTF-8";
 
 .product-details {
-	padding: 30px 15px;
-	font-family: Arial, sans-serif;
-	background-color: #fff;
+    padding: 30px 15px;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
 }
 
 .product__details__pic {
-	text-align: center;
-	margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 /* Container for the reviews section */
 .product-reviews {
@@ -77,234 +77,234 @@
 }
 
 .product__details__pic__item img {
-	width: 100%;
-	max-width: 300px;
-	height: auto;
-	border-radius: 5px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product__details__text h3 {
-	font-size: 24px;
-	font-weight: bold;
-	margin-bottom: 10px;
-	color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
 }
 
 .product__details__text p {
-	font-size: 16px;
-	line-height: 1.6;
-	color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
 }
 
 .product__details__price {
-	font-size: 28px;
-	font-weight: bold;
-	color: #ff5722;
-	margin: 15px 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ff5722;
+    margin: 15px 0;
 }
 
 .product__details__rating i {
-	color: #ffc107;
-	margin-right: 2px;
+    color: #ffc107;
+    margin-right: 2px;
 }
 
 .product__details__rating span {
-	font-size: 14px;
-	color: #999;
-	margin-left: 5px;
+    font-size: 14px;
+    color: #999;
+    margin-left: 5px;
 }
 
 .product__details__quantity {
-	margin-right: 20px;
-	display: inline-flex;
-	align-items: center;
+    margin-right: 20px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .quantity {
-	display: flex;
-	align-items: center;
-	gap: 10px; /* Khoảng cách giữa các phần tử */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa các phần tử */
 }
 
 .qty-btn {
-	background-color: #f0f0f0;
-	border: 1px solid #ddd;
-	width: 30px;
-	height: 30px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	cursor: pointer;
-	font-size: 18px;
-	font-weight: bold;
-	border-radius: 5px;
-	transition: all 0.3s ease;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
 .qty-btn:hover {
-	background-color: #ddd;
+    background-color: #ddd;
 }
 
 input#count {
-	width: 50px;
-	text-align: center;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	padding: 5px;
+    width: 50px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .primary-btn {
-	background-color: #007bff;
-	color: white;
-	padding: 10px 20px;
-	text-decoration: none;
-	font-weight: bold;
-	border-radius: 5px;
-	transition: background-color 0.3s ease;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .primary-btn:hover {
-	background-color: #7eb9ff;
+    background-color: #7eb9ff;
 }
 
 .heart-icon {
-	font-size: 20px;
-	margin-left: 10px;
-	color: #ff4d4d;
-	cursor: pointer;
-	transition: color 0.3s ease;
+    font-size: 20px;
+    margin-left: 10px;
+    color: #ff4d4d;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
 .heart-icon:hover {
-	color: #e60000;
+    color: #e60000;
 }
 
 .product__details__tab {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 
 .product__details__tab ul.nav-tabs {
-	display: flex;
-	justify-content: space-around;
-	border-bottom: 2px solid #ddd;
-	margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
 }
 
 .product__details__tab ul.nav-tabs li a {
-	font-size: 16px;
-	font-weight: bold;
-	color: #333;
-	padding: 10px 20px;
-	text-transform: uppercase;
-	border: 1px solid transparent;
-	transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
 }
 
 .product__details__tab ul.nav-tabs li a.active {
-	border-color: #007bff;
-	color: #007bff;
+    border-color: #007bff;
+    color: #007bff;
 }
 
 .product__details__tab ul.nav-tabs li a:hover {
-	color: #0056b3;
+    color: #0056b3;
 }
 
 .product__details__tab__desc {
-	padding: 20px;
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 .contact-form {
-	margin-top: 30px;
-	padding: 20px;
-	background-color: #f9f9f9;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .contact__form__title h2 {
-	font-size: 20px;
-	font-weight: bold;
-	color: #333;
-	margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .contact-form input[type="text"], .contact-form input[type="number"] {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	margin-bottom: 15px;
-	font-size: 14px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
 }
 
 .site-btn {
-	background-color: #28a745;
-	color: white;
-	padding: 10px 20px;
-	font-size: 14px;
-	font-weight: bold;
-	border-radius: 5px;
-	transition: background-color 0.3s ease;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .site-btn:hover {
-	background-color: #218838;
+    background-color: #218838;
 }
 
 .share a {
-	display: inline-block;
-	margin-right: 10px;
-	color: #333;
-	font-size: 18px;
-	transition: color 0.3s ease;
+    display: inline-block;
+    margin-right: 10px;
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s ease;
 }
 
 .share a:hover {
-	color: #007bff;
+    color: #007bff;
 }
 
 @media ( max-width : 768px) {
-	.product__details__pic__item img {
-		max-width: 100%;
-		height: auto;
-	}
-	.product__details__text {
-		padding-left: 20px;
-	}
-	.product__details__text h3 {
-		font-size: 20px;
-	}
-	.product__details__price {
-		font-size: 24px;
-	}
-	.primary-btn {
-		padding: 8px 15px;
-		font-size: 14px;
-	}
-	.product__details__tab ul.nav-tabs li a {
-		font-size: 14px;
-		padding: 8px 15px;
-	}
+    .product__details__pic__item img {
+        max-width: 100%;
+        height: auto;
+    }
+    .product__details__text {
+        padding-left: 20px;
+    }
+    .product__details__text h3 {
+        font-size: 20px;
+    }
+    .product__details__price {
+        font-size: 24px;
+    }
+    .primary-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    .product__details__tab ul.nav-tabs li a {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
 }
 /* Phần sản phẩm liên quan */
 .related-product {
-	padding: 50px 0;
-	background-color: #f9f9f9;
+    padding: 50px 0;
+    background-color: #f9f9f9;
 }
 
 .related-product .section-title {
-	margin-bottom: 40px;
-	text-align: center;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
 .related-product .section-title h2 {
-	font-size: 28px;
-	font-weight: bold;
-	color: #333;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
 }
 .related-product .product__item {
     margin-bottom: 30px;
@@ -404,7 +404,7 @@ input#count {
     .product__item {
         height: 300px;
     }
-    
+
     .product__item__pic {
         height: 180px;
         width: 180px;
@@ -552,7 +552,7 @@ input#count {
     .product__item {
         height: 280px;
     }
-    
+
     .product__item__pic {
         height: 160px;
         width: 160px;
