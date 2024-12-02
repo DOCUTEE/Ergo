@@ -5,6 +5,8 @@ import cnpm.ergo.configs.JPAConfig;
 import cnpm.ergo.entity.Administrator;
 import cnpm.ergo.entity.Customer;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
@@ -25,6 +27,27 @@ public class CustomerDAOImpl implements ICustomerDAO {
             throw e;
         } finally {
             entityManager.close();
+        }
+    }
+
+    @Override
+    public Customer getCustomer(String email) {
+        EntityManager em = JPAConfig.getEntityManager();
+        try {
+            TypedQuery<Customer> query = em.createQuery(
+                    "SELECT c FROM Customer c WHERE c.email = :email and c.isDelete = false",
+                    Customer.class
+            );
+            query.setParameter("email", email);
+
+            // Wrap getSingleResult in a try-catch block to handle NoResultException
+            try {
+                return query.getSingleResult();
+            } catch (NoResultException e) {
+                return null; // Return null if no result is found
+            }
+        } finally {
+            em.close();
         }
     }
 
@@ -102,7 +125,7 @@ public class CustomerDAOImpl implements ICustomerDAO {
     }
 
     @Override
-    public void update(Customer customer) {
+    public boolean update(Customer customer) {
         EntityManager entityManager = JPAConfig.getEntityManager();
         try {
             entityManager.getTransaction().begin();
@@ -116,6 +139,7 @@ public class CustomerDAOImpl implements ICustomerDAO {
         } finally {
             entityManager.close();
         }
+        return false;
     }
 
     @Override

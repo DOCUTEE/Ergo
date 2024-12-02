@@ -15,8 +15,8 @@
                 <h2 class="text-center">Customer Sign up</h2>
                 <form action="${pageContext.request.contextPath}/customer/login" method="post">
                     <div class="form-group">
-                        <label for="email">name</label>
-                        <input type="email" class="form-control" id="name" name="name" required>
+                        <label for="name">name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">email</label>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">phone</label>
-                        <input type="email" class="form-control" id="phone number" name="phone number" required>
+                        <input type="number" class="form-control" id="phone number" name="phone number" required>
                     </div>
                     <div class="form-group">
                         <label for="password">password</label>

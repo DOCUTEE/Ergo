@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -55,6 +56,10 @@ public class RegisterController extends HttpServlet {
                 request.getRequestDispatcher("/customer/views/register.jsp").forward(request, response);
                 return;
             }
+
+            // Lưu thông tin khách hàng vào session
+            HttpSession session = request.getSession(true);
+            session.setAttribute("customer", customer);
 
             // Đăng ký thành công, chuyển sang trang đăng nhập
             response.sendRedirect(request.getContextPath() + "/customer/login");

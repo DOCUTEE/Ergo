@@ -1,7 +1,10 @@
 package cnpm.ergo.service.implement;
 
 import cnpm.ergo.DAO.implement.CustomerDAOImpl;
+import cnpm.ergo.DAO.implement.UserDAOImpl;
 import cnpm.ergo.DAO.interfaces.ICustomerDAO;
+import cnpm.ergo.DAO.interfaces.IUserDAO;
+import cnpm.ergo.entity.User;
 import cnpm.ergo.service.interfaces.ICustomerService;
 import cnpm.ergo.entity.Customer;
 
@@ -22,10 +25,30 @@ public class CustomerServiceImpl implements ICustomerService {
     public boolean login(String email, String password) {
         Customer customer = customerDAO.getCustomerByEmail(email);
         if (customer != null) {
-            return customer.getPassword().equals(password);
+            return customer.getPassword().equals(password);//match thì return true
         }
         return false;
     }
+
+    @Override
+    public boolean updateCustomerPassword(String email, String newPassword) {
+//            ICustomerDAO customerDAO = new CustomerDAOImpl();
+
+        Customer customer = customerDAO.getCustomerByEmail(email);
+        if (customer != null) {
+            customer.setPassword(newPassword);
+            boolean updateResult = customerDAO.update(customer);
+            System.out.println("Update result: " + updateResult);
+            return updateResult;
+        }
+        return false;  // Return false if the user doesn't exist
+    }
+
+    @Override
+    public Customer getCustomer(String email) {
+        return customerDAO.getCustomer(email);
+    }
+
 
     @Override
     public Customer getCustomerById(int id) {

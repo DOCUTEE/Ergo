@@ -4,14 +4,17 @@ import cnpm.ergo.entity.Customer;
 import java.util.List;
 
 public interface ICustomerService {
-    public Customer getCustomerById(int id);
-    public Customer getCustomerByEmail(String email);
-    public List<Customer> getAllCustomers();
-    public boolean insert(Customer customer);
-    public void update(Customer customer);
-    public void delete(int id);
-    public List<Customer> search(String keyword);
-    public List<Customer> findAll(int pageNo, int pageSize);
-    public long count();
-    public boolean login(String email, String password);
+    Customer getCustomerById(int id);
+    Customer getCustomerByEmail(String email);
+    List<Customer> getAllCustomers();
+    boolean insert(Customer customer);
+    void update(Customer customer);
+    void delete(int id);
+    List<Customer> search(String keyword);
+    List<Customer> findAll(int pageNo, int pageSize);
+    long count();
+    boolean login(String email, String password);
+    boolean updateCustomerPassword(String email, String newPassword);
+    Customer getCustomer(String email);
 }
+

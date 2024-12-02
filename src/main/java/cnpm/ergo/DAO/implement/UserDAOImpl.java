@@ -77,6 +77,23 @@ public class UserDAOImpl implements IUserDAO {
         }
     }
 
+    @Override
+    public User getUserByEmail(String email) {
+        EntityManager em = JPAConfig.getEntityManager();
+        try {
+            // Query to find the user by email
+            User user = em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+                    .setParameter("email", email)
+                    .getSingleResult();
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Return null if no user is found or there is an error
+        } finally {
+            em.close();
+        }
+    }
+
 
 
     public static void main(String[] args) {

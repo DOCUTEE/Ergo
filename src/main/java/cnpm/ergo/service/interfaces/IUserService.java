@@ -13,4 +13,7 @@ public interface IUserService {
     boolean updateUser(User user);
     // Delete
     boolean deleteUser(int userId);
+    boolean updateCustomerPassword(String email, String newPassword);// New method for updating password
+
+    boolean getUserByEmail(String email);
 }
