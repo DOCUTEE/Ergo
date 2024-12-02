@@ -11,7 +11,7 @@
 <br>
 <a href="customer/views/index.jsp">Go to Customer</a>
 <br>
-<a href="customer/info">Go to Customer detail</a>
+<a href="customer/info?id=94">Go to Customer detail</a>
 <br>
 <a href="hello-servlet">Test he thong okok</a>
 </body>

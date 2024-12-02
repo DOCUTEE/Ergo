@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,24 +48,26 @@
                     <td>${order.status}</td>
                     <td>${order.totalCost}</td>
                     <td>
-                        <c:choose>
-                            <c:when test="${order.status == 'Delivered'}">
-                                <!-- Nút Review hiển thị nếu status là 'Delivered' -->
-                                <button class="btn btn-warning btn-sm review-btn" data-bs-toggle="modal" data-bs-target="#reviewModal"
-                                        data-order-id="${order.orderId}"
-                                        data-order-date="${order.orderDate}"
-                                        data-order-status="${order.status}"
-                                        >Review
-                                </button>
-                            </c:when>
-                            <c:otherwise>
-                                <!-- Nút Review bị vô hiệu hóa nếu không phải 'Delivered' -->
-                                <button class="btn btn-secondary btn-sm" disabled>Review</button>
-                            </c:otherwise>
-                        </c:choose>
+                        <c:if test="${not empty order.orderItems}">
+<%--                            <button class="btn btn-dark btn-sm detail-btn"--%>
+<%--                                    data-bs-toggle="modal"--%>
+<%--                                    data-bs-target="#detailModal${order.orderId}"--%>
+<%--                                    data-id="${order.orderId}"--%>
+<%--                            >--%>
+<%--                                Detail--%>
+<%--                            </button>--%>
+                            <a href="${pageContext.request.contextPath}/order-items?orderId=${order.orderId}" class="btn btn-dark btn-sm detail-btn">
+                                Detail
+                            </a>
+                        </c:if>
+                        <c:if test="${empty order.orderItems}">
+                            <span>No items available</span>
+                        </c:if>
+
 
                     </td>
                 </tr>
+
             </c:forEach>
         </c:if>
         </tbody>
@@ -112,6 +116,85 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel">Order Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead class="table-dark">
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="orderItemDetails">
+                        <c:if test="${not empty orderItems}">
+                            <c:forEach var="item" items="${orderItems}">
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center" >
+                                            <c:choose>
+                                                    <c:when test="${not empty item.productType.product.productImages[0].productImage}">
+                                                        <img src="${item.productType.product.productImages[0].productImage}"
+                                                             alt=""
+                                                             class="img-thumbnail me-2"
+                                                             style="width: 100px; height: 100px; object-fit: cover;">
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <img src="https://via.placeholder.com/100"
+                                                             alt=""
+                                                             class="img-thumbnail me-2"
+                                                             style="width: 100px; height: 100px; object-fit: cover;">
+                                                    </c:otherwise>
+                                            </c:choose>
+                                            <span>${item.productType.product.name}</span>
+                                        </div>
+                                    </td>
+                                    <td>${item.quantity}</td>
+                                    <td>${item.price}</td>
+                                    <td>
+                                        <c:if test="${not empty orderHistory}">
+                                            <c:forEach var="order" items="${orderHistory}">
+                                                <c:choose>
+                                                    <c:when test="${currentOrderId == order.orderId and order.status == 'Delivered'}">
+                                                        <!-- Nút Review chỉ hiển thị nếu currentOrderId khớp với orderId -->
+                                                        <button class="btn btn-warning btn-sm review-btn"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#reviewModal"
+                                                                data-order-id="${order.orderId}"
+                                                                data-order-date="${order.orderDate}"
+                                                                data-order-status="${order.status}"
+                                                                data-product-id="${item.productType.product.productId}">
+                                                            Review
+                                                        </button>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <!-- Disable Review button -->
+                                                        <button class="btn btn-secondary btn-sm" disabled>Review</button>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                        </c:if>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${ empty order.orderItems}">
+                            <h3>No item</h3>
+                        </c:if>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -132,10 +215,23 @@
             reviewModal.addEventListener('show.bs.modal', function (event) {
                 const button = event.relatedTarget;
                 document.getElementById('reviewOrderId').value = button.getAttribute('data-order-id');
-                // document.getElementById('reviewProductId').value = button.getAttribute('data-product-id');
+                document.getElementById('reviewProductId').value = button.getAttribute('data-product-id');
+            });
+            // Gán giá trị vào modal khi nhấn Review
+            const detailModal = document.querySelectorAll('.detail-btn');
+            detailModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget; // Lấy nút được nhấn
+
+
             });
         });
-
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentOrderId = "${currentOrderId}";
+            if (currentOrderId) {
+                const detailModal = new bootstrap.Modal(document.getElementById('detailModal'));
+                detailModal.show();
+            }
+        });
     </script>
 </div>
 </body>

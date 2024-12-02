@@ -20,11 +20,12 @@ public class CustomerController extends HttpServlet {
         //int pageSize = 10;
         if (request.getParameter("id") != null) {
             id_user = Integer.parseInt(request.getParameter("id"));
+//            System.out.println("id_user param"+ id_user);
         }
         ICustomerService customerService = new CustomerServiceImpl();
         HttpSession session = request.getSession();
         Customer customer = customerService.getCustomerById(id_user);
-        System.out.println("Customer Info: " + customer);
+//        System.out.println("Customer Info: " + customer);
         response.getWriter().println("Customer Data: " + customer);
         session.setAttribute("customer", customer);
         request.getRequestDispatcher("/customer/views/info_detail.jsp").forward(request, response);

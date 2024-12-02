@@ -105,7 +105,7 @@ public class OrderItemDaoImpl implements IOrderItemDao{
 
 	    try {
 	        return em.createQuery(
-	                "SELECT oi FROM OrderItem oi WHERE oi.order.orderId = :orderId", 
+	                "SELECT oi FROM OrderItem oi WHERE oi.order.orderId=:orderId",
 	                OrderItem.class)
 	            .setParameter("orderId", orderId)
 	            .getResultList();

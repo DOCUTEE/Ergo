@@ -35,4 +35,8 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "customerId", nullable = false)
     private Customer customer;
+
+//    public static void main(String[] args) {
+//
+//    }
 }
