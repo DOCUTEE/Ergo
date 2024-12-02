@@ -23,14 +23,11 @@
               <label for="password">Password</label>
               <input type="password" class="form-control" id="password" name="password" required>
               <div>
-
                   <button type="submit" class="btn btn-primary btn-block mt-3">Sign in</button>
                   <a href="${pageContext.request.contextPath}/customer/register">Sign up</a>
                 <a href="${pageContext.request.contextPath}/customer/forgot-password">Forgot Password?</a>
               </div>
-
             </div>
-
           </form>
         </div>
       </div>

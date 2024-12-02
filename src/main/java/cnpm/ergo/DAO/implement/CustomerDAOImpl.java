@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
+import java.security.PublicKey;
 import java.util.List;
 
 public class CustomerDAOImpl implements ICustomerDAO {
@@ -126,11 +127,14 @@ public class CustomerDAOImpl implements ICustomerDAO {
 
     @Override
     public boolean update(Customer customer) {
+        //update customer
+        boolean result = false;
         EntityManager entityManager = JPAConfig.getEntityManager();
         try {
             entityManager.getTransaction().begin();
             entityManager.merge(customer);
             entityManager.getTransaction().commit();
+            result = true;
         } catch (RuntimeException e) {
             if (entityManager.getTransaction().isActive()) {
                 entityManager.getTransaction().rollback();
@@ -139,8 +143,9 @@ public class CustomerDAOImpl implements ICustomerDAO {
         } finally {
             entityManager.close();
         }
-        return false;
+        return result;
     }
+
 
     @Override
     public void delete(int id) {
