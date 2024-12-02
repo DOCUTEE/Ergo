@@ -96,7 +96,16 @@ public class CategoryDaoImpl implements ICategoryDao {
         Query query = em.createQuery(jpql);
         return ((Long) query.getSingleResult()).intValue(); // Đếm tổng số category
     }
-
+    @Override
+    public List<Category> findAllCategoryName() {
+        EntityManager em = JPAConfig.getEntityManager();
+        try {
+            String jpql = "SELECT c FROM Category c";
+            return em.createQuery(jpql, Category.class).getResultList();
+        } finally {
+            em.close();
+        }
+    }
     public static void main(String[] args) {
         CategoryDaoImpl categoryDaoImpl = new CategoryDaoImpl();
         // find by id

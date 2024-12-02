@@ -58,7 +58,6 @@ public abstract class User implements Serializable {
     public String toString() {
         return "User [id=" + userId + ", name=" + name + "]";
     }
-
 }
 
 

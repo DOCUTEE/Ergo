@@ -61,53 +61,41 @@ public class Order {
     @JoinColumn(name = "voucherId", referencedColumnName = "voucherId")
     private Voucher voucher;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<OrderItem> orderItems;
-    
-	@Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", orderDate=" + orderDate + ", status=" + status + ", cityOfProvince="
-				+ cityOfProvince + ", district=" + district + ", ward=" + ward + ", streetNumber=" + streetNumber
-				+ ", phone=" + phone + ", totalCost=" + totalCost + ", discount=" + discount + ", actualCost="
-				+ actualCost + ", customer=" + customer + "]";
-	}
-    
+
 
     public static void main(String[] args) {
-//        // create Order object
-//        Order order = new Order();
-//        // set orderDate
-//        order.setOrderDate(new Date(System.currentTimeMillis()));
-//        // set status
-//        order.setStatus("Đã đặt hàng");
-//        // set cityOfProvince
-//        order.setCityOfProvince("Hà Nội");
-//        // set district
-//        order.setDistrict("Cầu Giấy");
-//        // set ward
-//        order.setWard("Nghĩa Đô");
-//        // set streetNumber
-//        order.setStreetNumber("Số 1, Đại Cồ Việt");
-//        // set phone
-//        order.setPhone("0123456789");
-//        // set totalCost
-//        order.setTotalCost(1000.0);
-//        // set discount
-//        order.setDiscount(100.0);
-//        // set actualCost
-//        order.setActualCost(900.0);
-//        // set customer
-//        User customer = new UserDAOImpl().getUserById(1);
-//        order.setCustomer(customer);
-//        // insert order to database
-//        EntityManager em = JPAConfig.getEntityManager();
-//        em.getTransaction().begin();
-//        em.persist(order);
-//        em.getTransaction().commit();
-//        em.close();
+        // create Order object
+        Order order = new Order();
+        // set orderDate
+        order.setOrderDate(new Date(System.currentTimeMillis()));
+        // set status
+        order.setStatus("Đã đặt hàng");
+        // set cityOfProvince
+        order.setCityOfProvince("Hà Nội");
+        // set district
+        order.setDistrict("Cầu Giấy");
+        // set ward
+        order.setWard("Nghĩa Đô");
+        // set streetNumber
+        order.setStreetNumber("Số 1, Đại Cồ Việt");
+        // set phone
+        order.setPhone("0123456789");
+        // set totalCost
+        order.setTotalCost(1000.0);
+        // set discount
+        order.setDiscount(100.0);
+        // set actualCost
+        order.setActualCost(900.0);
+        // set customer
+        User customer = new UserDAOImpl().getUserById(1);
+        order.setCustomer(customer);
+        // insert order to database
+        EntityManager em = JPAConfig.getEntityManager();
+        em.getTransaction().begin();
+        em.persist(order);
+        em.getTransaction().commit();
+        em.close();
     }
-
-
-
-
 }

@@ -1,5 +1,3 @@
-  
-    
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <defs>
         <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
@@ -107,7 +105,7 @@
             <h4 class="d-flex justify-content-between align-items-center mb-3">
                 <span class="text-primary">Search</span>
             </h4>
-            <form role="search" action="index.jsp" method="get" class="d-flex mt-3 gap-0">
+            <form role="search" action="products/search" method="get" class="d-flex mt-3 gap-0">
                 <input class="form-control rounded-start rounded-0 bg-light" type="email" placeholder="What are you looking for?" aria-label="What are you looking for?">
                 <button class="btn btn-dark rounded-end rounded-0" type="submit">Search</button>
             </form>
@@ -121,7 +119,7 @@
 
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
-                    <a href="index.jsp">
+                    <a href="${pageContext.request.contextPath}/customer/home">
                         <img src="${pageContext.request.contextPath}/CommonImage/Logo.jpg" alt="logo" class="img-fluid" style="width: 100px; height: auto;">
                     </a>
 
@@ -139,7 +137,7 @@
                         </select>
                     </div>
                     <div class="col-11 col-md-7">
-                        <form id="search-form" class="text-center" action="index.jsp" method="post">
+                        <form id="search-form" class="text-center" action="products/search" method="get">
                             <input type="text" class="form-control border-0 bg-transparent" placeholder="Search for more than 20,000 products" />
                         </form>
                     </div>
@@ -229,18 +227,18 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
                                     <ul class="dropdown-menu" aria-labelledby="pages">
-                                        <li><a href="index.jsp" class="dropdown-item">About Us </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">Shop </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">Single Product </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">Cart </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">Checkout </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">Blog </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">Single Post </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">Styles </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">Contact </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">Thank You </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">My Account </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">404 Error </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">About Us </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">Shop </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">Single Product </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">Cart </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">Checkout </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">Blog </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">Single Post </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">Styles </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">Contact </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">Thank You </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">My Account </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/home" class="dropdown-item">404 Error </a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">

@@ -6,6 +6,7 @@ import org.hibernate.Hibernate;
 
 import cnpm.ergo.DAO.interfaces.IOrderItemDao;
 import cnpm.ergo.configs.JPAConfig;
+import cnpm.ergo.entity.CartItem;
 import cnpm.ergo.entity.Order;
 import cnpm.ergo.entity.OrderItem;
 import jakarta.persistence.EntityManager;
@@ -23,11 +24,7 @@ public class OrderItemDaoImpl implements IOrderItemDao{
 
 	    try {
 	        trans.begin();
-
-	        // Liên kết Order với OrderItem
 	        orderItem.setOrder(order);
-
-	        // Thêm mới OrderItem vào cơ sở dữ liệu
 	        em.persist(orderItem);
 
 	        trans.commit();
@@ -104,18 +101,21 @@ public class OrderItemDaoImpl implements IOrderItemDao{
 	}
 
 	@Override
-	public List<OrderItem> findAll(int orderId) {
-		EntityManager em = JPAConfig.getEntityManager();
-        String jpql = "SELECT oi FROM OrderItem oi " +
-                      "JOIN FETCH oi.order o " +
-                      "JOIN FETCH oi.productType pt " +
-                      "WHERE o.orderId = :orderId";
-
-        TypedQuery<OrderItem> query = em.createQuery(jpql, OrderItem.class);
-        query.setParameter("orderId", orderId);
-        return query.getResultList();
-    }
-
+	public List<OrderItem> findAll(int orderId)
+    {
+        EntityManager em = JPAConfig.getEntityManager();
+	    try {
+	        return em.createQuery(
+	                "SELECT oi FROM OrderItem oi WHERE oi.order.orderId = :orderId",
+	                OrderItem.class)
+	            .setParameter("orderId", orderId)
+	            .getResultList();
+	    } catch (Exception e) {
+	        throw new RuntimeException("Failed to retrieve OrderItems for orderId: " + orderId, e);
+	    } finally {
+	        em.close();
+	    }
+	}
 
 	@Override
 	public int count(int orderId) {
@@ -136,13 +136,41 @@ public class OrderItemDaoImpl implements IOrderItemDao{
 	    }
 	}
 
-	public static void main(String[] args) {
-//		OrderItemDaoImpl o = new OrderItemDaoImpl();
-//		List<OrderItem> oi = o.findAll(1);
-//		for (OrderItem item : oi) {
-//	        System.out.println(item);
-//	    }
+	@Override
+	public List<OrderItem> findByProductNameForOrderItem(String productName) {
+	    EntityManager em = null;
+	    try {
+	        em = JPAConfig.getEntityManager();
+	        return em.createQuery(
+	                "SELECT oi FROM OrderItem oi WHERE oi.productType.product.name LIKE :productName",
+	                OrderItem.class)
+	            .setParameter("productName", "%" + productName + "%")
+	            .getResultList();
+	    } catch (Exception e) {
+	        throw new RuntimeException("Failed to retrieve OrderItems for productName: " + productName, e);
+	    } finally {
+	        if (em != null && em.isOpen()) {
+	            em.close();
+	        }
+	    }
 	}
-	
+
+
+
+	public static void main(String[] args) {
+        IOrderItemDao orderItemDao = new OrderItemDaoImpl();
+        String productName = "ghế";
+        List<OrderItem> orderItems = orderItemDao.findByProductNameForOrderItem(productName);
+        if (orderItems.isEmpty()) {
+            System.out.println("No OrderItems found for product: " + productName);
+        } else {
+            for (OrderItem orderItem : orderItems) {
+                System.out.println("Product Name: " + orderItem.getProductType().getProduct().getName());
+                System.out.println("Quantity: " + orderItem.getQuantity());
+                System.out.println("Price: " + orderItem.getPrice());
+                System.out.println("----");
+            }
+        }
+    }
 	
 }

@@ -4,32 +4,6 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
              https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
     <persistence-unit name="jpa-hibernate-mysql">
-    	<class>cnpm.ergo.entity.Administrator</class>
-    	<class>cnpm.ergo.entity.Blog</class>
-    	<class>cnpm.ergo.entity.CampaignImage</class>
-    	<class>cnpm.ergo.entity.Cart</class>
-    	<class>cnpm.ergo.entity.CartItem</class>
-    	<class>cnpm.ergo.entity.Category</class>
-    	<class>cnpm.ergo.entity.Conversation</class>
-    	<class>cnpm.ergo.entity.Customer</class>
-    	<class>cnpm.ergo.entity.Employee</class>
-    	<class>cnpm.ergo.entity.Log</class>
-		<class>cnpm.ergo.entity.MarketingCampaign</class>
-		<class>cnpm.ergo.entity.Message</class>
-    	<class>cnpm.ergo.entity.Order</class>
-    	<class>cnpm.ergo.entity.OrderItem</class>
-    	<class>cnpm.ergo.entity.PaymentAccount</class> 
-    	<class>cnpm.ergo.entity.Product</class>
-		<class>cnpm.ergo.entity.ProductImage</class>
-		<class>cnpm.ergo.entity.ProductType</class>  
-		<class>cnpm.ergo.entity.Question</class>  
-		<class>cnpm.ergo.entity.Review</class>   	
-		<class>cnpm.ergo.entity.Role</class>
-    	<class>cnpm.ergo.entity.User</class>
-    	<class>cnpm.ergo.entity.Voucher</class>
-    	<class>cnpm.ergo.entity.VoucherByPrice</class>
-    	<class>cnpm.ergo.entity.VoucherByProduct</class>
-    	<class>cnpm.ergo.entity.Wishlist</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="jakarta.persistence.jdbc.url"    value="jdbc:mysql://localhost:3306/cnpm" />
@@ -37,8 +11,8 @@
             <property name="jakarta.persistence.jdbc.password" value="root" />
             <property name="jakarta.persistence.schema-generation.database.action" value="update" />
             <property name="hibernate.dialect"    value="org.hibernate.dialect.MySQLDialect" />
-            <property name="hibernate.show_sql"   value="false" />
-            <property name="hibernate.format_sql" value="false" />
+            <property name="hibernate.show_sql"   value="true" />
+            <property name="hibernate.format_sql" value="true" />
         </properties>
     </persistence-unit>
 </persistence>

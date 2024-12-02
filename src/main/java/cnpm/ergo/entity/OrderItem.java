@@ -29,11 +29,11 @@ public class OrderItem {
 
     @Column(name = "price", nullable = false)
     private double price;
-    
+
     @Override
     public String toString() {
-        String image = (productType != null && !productType.getProduct().getProductImages().isEmpty()) 
-                       ? productType.getProduct().getProductImages().get(0).getProductImage() 
+        String image = (productType != null && !productType.getProduct().getProductImages().isEmpty())
+                       ? productType.getProduct().getProductImages().get(0).getProductImage()
                        : "No Image";
 
         return "OrderItem [orderId=" + (order != null ? order.getOrderId() : "null") +
@@ -42,10 +42,9 @@ public class OrderItem {
                ", productImage=" + image + "]";
     }
 
-  
+
 
     public static void main(String[] args) {
 
     }
-
 }

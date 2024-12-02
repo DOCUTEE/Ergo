@@ -27,6 +27,9 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Product> products;
 
+    public String getName() {
+        return categoryName;
+    }
     public static void main(String[] args) {
         //insert category
         ICategoryDao categoryDao = new CategoryDaoImpl();
@@ -45,4 +48,6 @@ public class Category {
         IProductDao productDao = new ProductDaoImpl();
         productDao.insert(product);
     }
+
+
 }

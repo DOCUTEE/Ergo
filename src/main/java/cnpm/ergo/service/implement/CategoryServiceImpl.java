@@ -19,7 +19,10 @@ public class CategoryServiceImpl implements ICategoryService {
     public void updateCategory(Category category) {
         categoryDao.update(category);
     }
-
+    @Override
+    public List<Category> getAllCategoriesName() {
+        return categoryDao.findAllCategoryName();
+    }
     @Override
     public void deleteCategory(int categoryId) {
         try {

@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "CustomerHomeController", value = "/customer/home")
+@WebServlet(name = "CustomerHomeController", value = "/home")
 public class CustomerHomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,7 +24,7 @@ public class CustomerHomeController extends HttpServlet {
 
         //Get 10 first products
         IProductService productService = new ProductServiceImpl();
-        request.setAttribute("products", productService.getAllProducts());
+        request.setAttribute("products", productService.getAllProducts(1,10));
 
         //get all categories
         ICategoryService categoriesService = new CategoryServiceImpl();

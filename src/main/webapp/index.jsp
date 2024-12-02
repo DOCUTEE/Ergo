@@ -9,7 +9,7 @@
 <br>
 <a href="employee/login">Go to Employee</a>
 <br>
-<a href="customer/home">Go to Customer</a>
+<a href="home">Go to Customer</a>
 <br>
 <a href="hello-servlet">Test he thong okok</a>
 </body>

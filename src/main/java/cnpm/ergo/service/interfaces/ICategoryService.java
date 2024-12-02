@@ -11,4 +11,5 @@ public interface ICategoryService {
     List<Category> getAllCategories();
     List<Category> searchCategoriesByName(String name);
     int getCategoryCount();
+	List<Category> getAllCategoriesName();
 }

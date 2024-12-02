@@ -24,7 +24,7 @@ public class Role implements Serializable {
     private String roleName;
 
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<User> users;
 
     public static void main(String[] args) {

@@ -11,4 +11,5 @@ public interface ICategoryDao {
     List<Category> findAll();
     List<Category> searchByName(String name);
     int count();
+	List<Category> findAllCategoryName();
 }

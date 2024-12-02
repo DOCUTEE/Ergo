@@ -1,0 +1,9 @@
+@charset "UTF-8";
+.accordion-button {
+    cursor: default !important;
+    pointer-events: none;
+}
+
+.accordion-button::after {
+    display: none !important;
+}
