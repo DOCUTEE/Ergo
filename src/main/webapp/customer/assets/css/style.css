@@ -655,6 +655,29 @@ h1,h2,h3,h4,h5,h6 {
   margin-top: -140px;
   margin-bottom: -140px;
 }
+
+
+.cart-item__loading{
+  opacity: 0.4;
+}
+
+.cart-item {
+  position: relative;
+}
+.cart-item--out-stock::after {
+  content: 'Out of stock';
+  text-align: center;
+  font-size: 30px;
+  color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+
 @media screen and (max-width:991px) {
   .image-float {
     margin: 0;

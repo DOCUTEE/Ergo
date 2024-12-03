@@ -1,5 +1,6 @@
 package cnpm.ergo.DAO.interfaces;
 
+import cnpm.ergo.entity.Administrator;
 import cnpm.ergo.entity.Customer;
 
 import java.util.List;

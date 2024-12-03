@@ -232,7 +232,7 @@
                                         <li><a href="index.jsp" class="dropdown-item">About Us </a></li>
                                         <li><a href="index.jsp" class="dropdown-item">Shop </a></li>
                                         <li><a href="index.jsp" class="dropdown-item">Single Product </a></li>
-                                        <li><a href="index.jsp" class="dropdown-item">Cart </a></li>
+                                        <li><a href="${pageContext.request.contextPath}/customer/cart" class="dropdown-item">Cart </a></li>
                                         <li><a href="index.jsp" class="dropdown-item">Checkout </a></li>
                                         <li><a href="index.jsp" class="dropdown-item">Blog </a></li>
                                         <li><a href="index.jsp" class="dropdown-item">Single Post </a></li>

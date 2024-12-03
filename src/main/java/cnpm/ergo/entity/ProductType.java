@@ -9,6 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
+@Builder
 @Table(name = "product_type")
 @NamedQuery(name = "ProductType.findAll", query = "SELECT p FROM ProductType p")
 

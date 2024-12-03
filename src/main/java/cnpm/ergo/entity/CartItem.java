@@ -2,12 +2,14 @@ package cnpm.ergo.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
+@Builder
 @Table(name = "CartItem")
 @NamedQuery(name = "CartItem.findAll", query = "SELECT ci FROM CartItem ci")
 public class CartItem {
@@ -21,7 +23,7 @@ public class CartItem {
     @JoinColumn(name = "cartId", nullable = false)
     private Cart cart;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "typeId", referencedColumnName = "typeId")
     private ProductType productType;
 
@@ -30,5 +32,4 @@ public class CartItem {
 
     @Column(name = "price", nullable = false)
     private double price;
-
 }

@@ -138,14 +138,134 @@
     });
   }
 
+  const initCartHandle = ()=>{
+    $('.cart-item').on('click', '.addProductBtn',  function () {
+      const row = $(this).closest('.cart-item');
+      const cartItemId = row.attr('cartItemId');
+      const quantityInput = row.find('.quantity-input').first();
+      const quantity = parseInt(quantityInput.val())+1;
+      quantityInput.val(quantity)
+      updateCartItem({
+        cartItemId, quantity, row
+      })
+    })
+
+    $('.cart-item').on('click', '.subProductBtn',  function () {
+      const row = $(this).closest('.cart-item');
+      const cartItemId = row.attr('cartItemId');
+      const quantityInput = row.find('.quantity-input').first();
+      const quantity = parseInt(quantityInput.val())-1;
+      if (quantity === 0){
+        deleteCartItem({
+          cartItemId, row
+        })
+        return
+      }
+      quantityInput.val(quantity)
+      updateCartItem({
+        cartItemId, quantity, row
+      })
+    })
+
+    $('.cart-item').on('click', '.removeProductBtn',  function () {
+      const row = $(this).closest('.cart-item');
+      const cartItemId = row.attr('cartItemId');
+      deleteCartItem({
+        cartItemId, row
+      })
+    })
+
+    $('.removeAllProductBtn').on('click', function () {
+      $('.cart-item').each(function () {
+        const row = $(this);
+        const cartItemId = row.attr('cartItemId');
+        deleteCartItem({
+          cartItemId,
+          row
+        });
+        row.remove();
+      });
+    });
+
+    $('.cart-item').on('change', '.quantity-input',  function () {
+      const row = $(this).closest('.cart-item');
+      const cartItemId = row.attr('cartItemId');
+      const quantity = parseInt($(this).val());
+      if (quantity <= 0){
+        deleteCartItem({
+          cartItemId,
+          row
+        });
+        return
+      }
+      updateCartItem({
+        cartItemId, quantity, row
+      })
+    })
+
+
+    const updateCartItem = function ({cartItemId, quantity, row}){
+      row.addClass("cart-item__loading")
+      const input = row.find('.quantity-input').first()
+      $.ajax({
+        url: "http://localhost:8080/Ergo/customer/cart",
+        method: "POST",
+        data: {
+          action: "updateQuantity",
+          quantity: quantity,
+          cartItemId: cartItemId
+        },
+        success: function(data) {
+          const {status, action, oldQuantity} = data
+          if (status === "quantityExceed"){
+            input.val(oldQuantity)
+          }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error(jqXHR, textStatus, errorThrown)
+          input.val(textStatus?.oldQuantity)
+        },
+        complete: function (data){
+          row.removeClass('cart-item__loading')
+          window.location.reload()
+        }
+      });
+    }
+
+    const deleteCartItem = function ({cartItemId, row}){
+      row.addClass("cart-item__loading")
+      $.ajax({
+        url: "http://localhost:8080/Ergo/customer/cart",
+        method: "POST",
+        data: {
+          action: "deleteItem",
+          cartItemId: cartItemId
+        },
+        success: function(data) {
+          $(row).remove()
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.error(jqXHR, textStatus, errorThrown)
+        },
+        complete: function (data){
+          window.location.reload()
+        }
+      });
+    }
+
+    const isOutOfStock = async (productId)=>{
+       return false
+    }
+  }
+
   // document ready
   $(document).ready(function() {
-    
     initPreloader();
     initSwiper();
     initProductQty();
     initJarallax();
     initChocolat();
+    initCartHandle();
 
   }); // End of a document
 

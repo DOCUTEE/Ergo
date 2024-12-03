@@ -1,9 +1,7 @@
 package cnpm.ergo.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Entity
+@Builder
 @Table(name = "product")
 @NamedQuery(name = "product.findAll", query = "SELECT p FROM Product p")
 public class Product {
@@ -29,10 +28,10 @@ public class Product {
     @Column(name = "isDelete", columnDefinition = "BIT")
     private boolean isDelete;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private List<ProductType> productTypes;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     private List<ProductImage> productImages;
 
     @ManyToOne(fetch = FetchType.LAZY)

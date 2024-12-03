@@ -22,7 +22,7 @@ public class Cart {
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
     private Customer customer;
     
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
     private List<CartItem> cartItems;
 
 }
