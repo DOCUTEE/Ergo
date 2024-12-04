@@ -24,7 +24,7 @@
         </div>
     </div>
 </div>
-<div class="container d-flex justify-content-end gap-3"><a type="button" href="<%= request.getContextPath() %>/order/?${cartId}" class="checkoutBtn btn btn-warning">Check out</a><button type="button"
+<div class="container d-flex justify-content-end gap-3"><a type="button" href="<%= request.getContextPath() %>/customer/order" class="checkoutBtn btn btn-warning">Check out</a><button type="button"
                                                                                                                                                                                              class="subProductBtn btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete all</button></div>
 <div class="container d-flex justify-content-center">
     <c:choose>

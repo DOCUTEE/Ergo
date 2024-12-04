@@ -4,19 +4,22 @@ import cnpm.ergo.DAO.implement.CartDaoImpl;
 import cnpm.ergo.DAO.implement.CartItemDaoImpl;
 import cnpm.ergo.DAO.interfaces.ICartDao;
 import cnpm.ergo.DAO.interfaces.ICartItemDao;
-import cnpm.ergo.entity.Cart;
-import cnpm.ergo.entity.CartItem;
-import cnpm.ergo.entity.Customer;
+import cnpm.ergo.DAO.interfaces.IOrderItemDao;
+import cnpm.ergo.configs.JPAConfig;
+import cnpm.ergo.entity.*;
+import cnpm.ergo.service.implement.OrderServiceImpl;
 import cnpm.ergo.service.implement.ProductTypeServiceImpl;
 import cnpm.ergo.service.interfaces.IProductTypeService;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mysql.cj.xdevapi.JsonParser;
+import jakarta.persistence.EntityManager;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -162,6 +165,8 @@ public class CartController extends HttpServlet {
 
     private void checkout(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        int cartId = (Integer) session.getAttribute("cartId");
         Customer customer = getCustomerIdFromSession(request);
         if (customer == null) {
             response.sendRedirect(request.getContextPath() + "/customer/login");
@@ -173,10 +178,18 @@ public class CartController extends HttpServlet {
             throw new IllegalArgumentException("Giỏ hàng của bạn rỗng.");
         }
 
-        cartItemDao.checkout(cart);
-        cartDao.clearCart(customer.getUserId());
-
-        request.setAttribute("message", "Thanh toán thành công!");
-        response.sendRedirect(request.getContextPath() + "/customer/cart");
+        try {
+            boolean result = OrderServiceImpl.checkout(cartId);
+            if (result) {
+                response.sendRedirect(request.getContextPath() + "/customer/Order.jsp");
+            } else {
+                request.setAttribute("error", "Checkout failed. Please try again.");
+                request.getRequestDispatcher("/customer/views/cart.jsp").forward(request, response);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("error", "An error occurred during checkout. Please try again.");
+            request.getRequestDispatcher("/customer/views/cart.jsp").forward(request, response);
+        }
     }
 }
